@@ -1,0 +1,96 @@
+{
+  "nodes": [
+    {
+      "id": 0,
+      "name": "UoP",
+      "type": "Education",
+      "links": "PSEN"
+    },
+    {
+      "id": 1,
+      "name": "Fishyfilaments",
+      "type": "Business",
+      "links": "UoP"
+    },
+    {
+      "id": 2,
+      "name": "Devon Wick",
+      "type": "Business",
+      "links": ""
+    },
+    {
+      "id": 3,
+      "name": "PSEN",
+      "type": "Partnership",
+      "links": ""
+    },
+    {
+      "id": 4,
+      "name": "Recycled Candle Company",
+      "type": "Business",
+      "links": "Devon Wick"
+    },
+    {
+      "id": 5,
+      "name": "PCA",
+      "type": "Education",
+      "links": ""
+    },
+    {
+      "id": 6,
+      "name": "Fab Lab",
+      "type": "Resource",
+      "links": "PCA"
+    },
+    {
+      "id": 7,
+      "name": "Impact Lab",
+      "type": "Project",
+      "links": "Fab Lab; PCA; UoE; Met Office; Exeter City Futures; Plymouth Marine Lab; Rothamsted Research; UoP"
+    },
+    {
+      "id": 8,
+      "name": "Digital Fabrication Lab",
+      "type": "Resource",
+      "links": "The Bridge; UoP; Devon Wick"
+    }
+  ],
+  "links": [
+    {
+      "source": 0,
+      "target": 3
+    },
+    {
+      "source": 1,
+      "target": 0
+    },
+    {
+      "source": 4,
+      "target": 2
+    },
+    {
+      "source": 6,
+      "target": 5
+    },
+    {
+      "source": 7,
+      "target": 6
+    },
+    {
+      "source": 7,
+      "target": 5
+    },
+    {
+      "source": 7,
+      "target": 0
+    },
+    {
+      "source": 8,
+      "target": 0
+    },
+    {
+      "source": 8,
+      "target": 2
+    }
+  ]
+}
