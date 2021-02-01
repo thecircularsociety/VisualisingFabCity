@@ -10,7 +10,7 @@
       "id": 1,
       "name": "Fishyfilaments",
       "type": "Business",
-      "links": "UoP"
+      "links": "Digital Fabrication Lab"
     },
     {
       "id": 2,
@@ -53,6 +53,18 @@
       "name": "Digital Fabrication Lab",
       "type": "Resource",
       "links": "The Bridge; UoP; Devon Wick"
+    },
+    {
+      "id": 9,
+      "name": "Smart Citizens",
+      "type": "Project",
+      "links": "Fab Lab"
+    },
+    {
+      "id": 10,
+      "name": "AYCH",
+      "type": "Project",
+      "links": "Fab Lab"
     }
   ],
   "links": [
@@ -62,7 +74,7 @@
     },
     {
       "source": 1,
-      "target": 0
+      "target": 8
     },
     {
       "source": 4,
@@ -91,6 +103,14 @@
     {
       "source": 8,
       "target": 2
+    },
+    {
+      "source": 9,
+      "target": 6
+    },
+    {
+      "source": 10,
+      "target": 6
     }
   ]
 }
