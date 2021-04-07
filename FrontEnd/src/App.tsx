@@ -19,6 +19,18 @@ const emptyGraphProps: NetworkGraphProps = {
     dataSource: "FabCity.json",
     getColourFromCategory: getColourFromFabCityCategory
 }
+
+const options = [
+    {
+        value: 'FabCity',
+        label: 'Fab City'
+    },
+    {
+        value: 'Waste',
+        label: 'Waste'
+    }
+]
+
 type NetworkGraphProps = {
     dataSource: string,
     getColourFromCategory: (category: string) => string
@@ -96,6 +108,25 @@ function getColourFromFabCityCategory(category: string): string {
         default: return "black"
     }
 }
+
+function getColourFromWasteCategory(category: string): string {
+    return "Fill me in";
+}
+
+function getPropsFromName(name: string): NetworkGraphProps {
+    switch (name) {
+        case "FabCity": return {
+            dataSource: 'FabCity.json',
+            getColourFromCategory: getColourFromFabCityCategory
+        }
+        case "Waste": return {
+            dataSource: 'Waste.json',
+            getColourFromCategory: getColourFromWasteCategory
+        }
+        default: return emptyGraphProps;
+    }
+}
+
 function App() {
     var [graphProps, setGraphProps] = React.useState(emptyGraphProps);
 
