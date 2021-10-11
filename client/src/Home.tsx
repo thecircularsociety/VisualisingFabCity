@@ -6,10 +6,6 @@ import { useEffect, useState } from 'react';
 
 type ArrowNode = {
     id: string,
-    position: {
-        x: number,
-        y: number
-    },
     caption: string,
     labels: string[],
     properties: {
@@ -24,7 +20,7 @@ type ArrowRelationship = {
     id: string,
     fromId: string,
     toId: string,
-    type: string,
+    type: Type,
     properties: {},
     styles: {}
 }
@@ -35,15 +31,15 @@ type ArrowGraph = {
 }
 
 type Node = {
-    id: string,
+    id: number,
     label: string,
     name: string
 }
 
 type Edge = {
     label: Type
-    source: string,
-    target: string
+    source: number,
+    target: number
 }
 
 type Graph = {
@@ -107,14 +103,34 @@ function Content() {
         fetch("new_data.json")
             .then((res) => res.json())
             .then((json) => {
+
+                const new_graph = EmptyGraph
                 const arrow_graph = json as ArrowGraph;
 
                 arrow_graph.nodes.forEach((node) => {
-                    console.log(node);
-                })
+                  const new_node: Node = {
+                    id: Number(node.id.substring(1)), 
+                    label: node.labels[0],
+                    name: node.properties["name"] ?? "UNDEFINED"
+                  };
 
-                const graph = EmptyGraph;
-                return graph;
+                  new_graph.nodes.push(new_node);    
+                });
+
+
+                arrow_graph.relationships.forEach((relationship) => {
+                  const new_link: Edge = {
+                    label: relationship.type,
+                    source: Number(relationship.fromId.substring(1)),
+                    target: Number(relationship.toId.substring(1))
+                  };
+
+                  new_graph.links.push(new_link);
+                });
+                   
+               console.log(graph);
+
+               return new_graph;
             })
             .then(setGraph)
       }, []);
@@ -122,14 +138,13 @@ function Content() {
     // You need parentheses around expressions within JSX (i.e. <Box>, <div> etc.) otherwise
     // it's interpreted as text.
     // Or you could just put it here :)
-    console.log(graph);
+
 
     return <Box height={600} className={'content hbox'}>
         <Box width={'30%'} className={'content_left vbox'}>
         </Box>
         <Box className={'main_content vbox'}>
             <GraphDiagram graph={graph}/>
-            {console.log(graph)}
         </Box>
         <Box width={'30%'} className={'content_right vbox'}>
         </Box>
