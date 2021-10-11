@@ -5,15 +5,15 @@ import { SizeMe } from 'react-sizeme';
 import { useEffect, useState } from 'react';
 
 type Node = {
-    id: number,
+    id: string,
     label: string,
     name: string
 }
 
 type Edge = {
     label: Label
-    source: number,
-    target: number
+    source: string,
+    target: string
 }
 
 type Graph = {
@@ -25,6 +25,7 @@ enum Label {
     Resource = 'Resource',
     Business = 'Business',
     Space = 'Space',
+    Machine = 'Machine'
 }
 
 type GraphDiagramProps = {
@@ -33,8 +34,8 @@ type GraphDiagramProps = {
 
 function Home() {
     return <Box className={'vbox'}>
-        <Navbar/>
         <Header/>
+        <Paragraph/>
         <Content/>
         <Footer/>
     </Box>;
@@ -47,6 +48,17 @@ function Navbar() {
 
 function Header() {
     return <Box height={150} className={'header padded vbox'}>
+    Modelling Fab City Plymouth as a Graph
+    </Box>;
+}
+
+function Paragraph() {
+    return <Box height={150} className={'paragraph padded vbox'}>
+    Plymouth is a Fab City at the beginning of its journey towards producing most of what it
+consumes by 2054. To reach this goal, many individuals and organisations will need to
+collaborate effectively to co-design - and locally produce - solutions whilst exchanging
+knowledge with the 38 other cities also working towards this goal. An open source tool built from graph technologies could enable the identification of potential collaborations and
+exchanges of materials, products and services by local citizens and organisations. A prototype visualisation of the graph structure can be seen and interacted with below.
     </Box>;
 }
 
@@ -64,6 +76,7 @@ function Content() {
         </Box>
         <Box className={'main_content vbox'}>
             <GraphDiagram graph={graph}/>
+            console.log(graph)
         </Box>
         <Box width={'30%'} className={'content_right vbox'}>
         </Box>
@@ -75,14 +88,17 @@ function Footer() {
     </Box>
 }
 
+// Can change this to Label enum!
 function getColorFromLabel(label: string) {
     switch (label) {
         case 'Space':
             return '#4287f5';
-        case 'Business':
+        case 'Organisation':
             return '#aa42f5';
         case 'Resource':
             return '#f5c542';
+        case 'Machine':
+            return 'aquamarine'
         default:
             return '#dddddd';
     }

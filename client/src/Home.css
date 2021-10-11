@@ -3,6 +3,7 @@ html, body {
     padding: 0;
     margin: 0;
     background-color: #f6f6f6;
+    font-family: 'Roboto';
 }
 
 .sticky {
@@ -22,6 +23,7 @@ html, body {
 .padded {
     padding: 20px;
     box-sizing: border-box;
+    align-items: center;
 }
 
 .hbox {
@@ -39,6 +41,13 @@ html, body {
 
 .header {
     background-color: aquamarine;
+    font-family: 'Roboto';
+    font-size: xx-large;
+    font-weight: 500;
+}
+
+.paragraph {
+    justify-content: center;
 }
 
 .content {
