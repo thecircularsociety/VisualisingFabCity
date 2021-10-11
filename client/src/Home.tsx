@@ -68,15 +68,25 @@ function Content() {
     useEffect(() => {
         fetch("data.json")
           .then((res) => res.json())
+          .then((json) => {
+              console.log(json);
+              // Do your processing here
+              return json;
+            })
           .then(setGraph)
       }, []);
+
+    // You need parentheses around expressions within JSX (i.e. <Box>, <div> etc.) otherwise
+    // it's interpreted as text.
+    // Or you could just put it here :)
+    console.log(graph);
 
     return <Box height={600} className={'content hbox'}>
         <Box width={'30%'} className={'content_left vbox'}>
         </Box>
         <Box className={'main_content vbox'}>
             <GraphDiagram graph={graph}/>
-            console.log(graph)
+            {console.log(graph)}
         </Box>
         <Box width={'30%'} className={'content_right vbox'}>
         </Box>
