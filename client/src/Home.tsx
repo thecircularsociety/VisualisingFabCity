@@ -4,6 +4,36 @@ import { ForceGraph2D } from 'react-force-graph';
 import { SizeMe } from 'react-sizeme';
 import { useEffect, useState } from 'react';
 
+type ArrowNode = {
+    id: string,
+    position: {
+        x: number,
+        y: number
+    },
+    caption: string,
+    labels: string[],
+    properties: {
+        name?: string
+    },
+    style: {
+        "node-color"?: string
+    }
+}
+
+type ArrowRelationship = {
+    id: string,
+    fromId: string,
+    toId: string,
+    type: string,
+    properties: {},
+    styles: {}
+}
+
+type ArrowGraph = {
+    nodes: ArrowNode[],
+    relationships: ArrowRelationship[],
+}
+
 type Node = {
     id: string,
     label: string,
@@ -11,7 +41,7 @@ type Node = {
 }
 
 type Edge = {
-    label: Label
+    label: Type
     source: string,
     target: string
 }
@@ -21,11 +51,19 @@ type Graph = {
     links: Edge[]
 }
 
-enum Label {
-    Resource = 'Resource',
-    Business = 'Business',
-    Space = 'Space',
-    Machine = 'Machine'
+const EmptyGraph: Graph = {
+    nodes: [],
+    links: []
+}
+
+enum Type {
+    Has = 'HAS',
+    Consumes = 'CONSUMES',
+    Creates = 'CREATES',
+    Needs = 'NEEDS',
+    MadeOf = 'MADE_OF',
+    TypeOf = 'A_TYPE_OF',
+    CanMake = 'CAN_MAKE'
 }
 
 type GraphDiagramProps = {
@@ -66,14 +104,19 @@ function Content() {
     const [graph, setGraph] = useState<Graph>({nodes:[],links:[]})
 
     useEffect(() => {
-        fetch("data.json")
-          .then((res) => res.json())
-          .then((json) => {
-              console.log(json);
-              // Do your processing here
-              return json;
+        fetch("new_data.json")
+            .then((res) => res.json())
+            .then((json) => {
+                const arrow_graph = json as ArrowGraph;
+
+                arrow_graph.nodes.forEach((node) => {
+                    console.log(node);
+                })
+
+                const graph = EmptyGraph;
+                return graph;
             })
-          .then(setGraph)
+            .then(setGraph)
       }, []);
 
     // You need parentheses around expressions within JSX (i.e. <Box>, <div> etc.) otherwise
